@@ -5,8 +5,8 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // get all products
 router.get('/', async (req, res) => {
-   // find all products
-   try {
+  // find all products
+  try {
     const productData = await Product.findAll({
       include: [{model: Category}, {model: Tag}]
     });
@@ -18,22 +18,22 @@ router.get('/', async (req, res) => {
 });
 
 // get one product
-  router.get('/:id', async (req, res) => {
-    // find a single product by its `id`
-    try {
-      const productData = await Product.findByPk(req.params.id, {
-        include: [{model: Category}, {model: Tag}]
-      });
-      if (!productData) {
-        res.status(404).json({ message: 'No product found with this id!' });
-        return;
-      }
-      res.status(200).json(productData);
-    } catch (err) {
-      res.status(500).json(err);
+router.get('/:id', async (req, res) => {
+  // find a single product by its `id`
+  try {
+    const productData = await Product.findByPk(req.params.id, {
+      include: [{model: Category}, {model: Tag}]
+    });
+    if (!productData) {
+      res.status(404).json({ message: 'No product found with this id!' });
+      return;
     }
-    // be sure to include its associated Category and Tag data
-  });
+    res.status(200).json(productData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+  // be sure to include its associated Category and Tag data
+});
 
 // create new product
 router.post('/', (req, res) => {
@@ -42,7 +42,8 @@ router.post('/', (req, res) => {
       product_name: "Basketball",
       price: 200.00,
       stock: 3,
-      tagIds: [1, 2, 3, 4]
+      tagIds: [1, 2, 3, 4],
+      category_id: 2
     }
   */
   Product.create(req.body)
@@ -68,9 +69,9 @@ router.post('/', (req, res) => {
 });
 
 // update product
-router.put('/:id', async (req, res) => {
+router.put('/:id', (req, res) => {
   // update product data
-   Product.update(req.body, {
+  Product.update(req.body, {
     where: {
       id: req.params.id,
     },
