@@ -42,5 +42,8 @@
   ## Profile
   [GitHub](https://github.com/cole-cochran/Sequelize-Ecommerce-Backend)
 
+  ## Walkthrough Video
+  [Google Drive](https://drive.google.com/drive/folders/1w6B_Uqyc0gTsuJmIagn1ECcV6Oqx8HOZ?usp=sharing)
+
   ## Contact
   [Contact Us](mailto:colecochran405@gmail.com)
